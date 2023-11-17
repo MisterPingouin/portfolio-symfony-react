@@ -1,15 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import Header from './components/Header'; 
+import { createRoot } from 'react-dom/client';
+import Header from './components/Header';
 import Footer from './components/Footer';
+import ProjectList from './components/ProjectList';
 import '../styles/app.css';
 
-const App = () => (
-  <>
+const container = document.getElementById('root');
+const root = createRoot(container);
+root.render(
+  <React.StrictMode>
     <Header />
-    {/* Autres composants de votre application */}
+    <ProjectList />
     <Footer />
-  </>
+  </React.StrictMode>
 );
-
-ReactDOM.render(<App />, document.getElementById('root'));
