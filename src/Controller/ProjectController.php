@@ -21,8 +21,7 @@ class ProjectController extends AbstractController
                 'description' => $project->getDescription(),
                 'image' => $assetsManager->getUrl('build/images/' . $project->getImage()),
                'website' =>$project->getWebsite(),
-               'video' =>$project->getVideo(),
-            ];
+               'video' => $project->getVideo() ? $assetsManager->getUrl('build/videos/' . $project->getVideo()) : null,            ];
         }, $projects);
 
         return $this->json($data);

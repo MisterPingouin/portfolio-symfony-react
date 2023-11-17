@@ -1,0 +1,197 @@
+.article > * {
+    grid-row: 1 / -1;
+    grid-column: 1 / -1;
+}
+
+.article[hidden] {
+    display: none;
+}
+
+figure {
+    z-index: -1;
+    grid-row: 1 / -1;
+}
+
+.image {
+    max-width: 42rem;
+    height: auto;
+    aspect-ratio: 16 / 8;
+    object-fit: cover;
+}
+
+.title {
+    font-size: min(3.5em, 7vw);
+    opacity: 0;
+}
+
+.description {
+    opacity: 0;
+}
+
+.cta-btn {
+    position: relative;
+    display: inline-flex;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    background: transparent;
+    padding: 0;
+    opacity: 0;
+    width: 12rem;
+    height: auto;
+    
+    &.learn-more {
+        .circle {
+            position: relative;
+            display: block;
+            margin: 0;
+            width: 3rem;
+            height: 3rem;
+            background: dodgerblue;
+            border-radius: 1.625rem;
+            transition: width 0.5s ease; 
+
+            .icon {
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                background: #fff;
+                transform: translate(0, 0); 
+                transition: transform 0.5s ease; 
+                
+                &.arrow {
+                    left: 0.625rem;
+                    width: 1.125rem;
+                    height: 0.125rem;
+                    background: none;
+
+                    &::before {
+                        position: absolute;
+                        content: '';
+                        top: -0.25rem;
+                        right: 0.0625rem;
+                        width: 0.625rem;
+                        height: 0.625rem;
+                        border-top: 0.125rem solid #fff;
+                        border-right: 0.125rem solid #fff;
+                        transform: rotate(45deg);
+                    }
+                }
+            }
+        }
+
+        .button-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0.75rem 0;
+            margin: 0 0 0 1.85rem;
+            color: dodgerblue;
+            font-weight: 700;
+            line-height: 1.6;
+            text-align: center;
+            text-transform: uppercase;
+        }
+    }
+
+    &:hover {
+        .circle {
+            width: 100%;
+            .icon {
+                &.arrow {
+                    background: #fff;
+                    transform: translate(1rem, 0); 
+                }
+            }
+        }
+        .button-text {
+            color: #fff;
+        }
+    }
+}
+
+
+@keyframes titleAnim {
+    0% {
+        letter-spacing: 0.5em;
+        transform: translateX(1em);
+        filter: blur(0.75em);
+        opacity: 0;
+    }
+    27.5% {
+        filter: blur(0.0625em);
+    }
+    100% {
+        letter-spacing: initial;
+        transform: translateX(0);
+        filter: unset;
+        opacity: 1;
+    }
+}
+
+.article:not([hidden]) .description {
+    animation: textAnim 600ms cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+    animation-delay: 400ms;
+}
+
+@keyframes textAnim {
+    0% {
+        transform: translateY(1em);
+        filter: blur(0.5em);
+        opacity: 0.125;
+    }
+    100% {
+        transform: translateY(0);
+        filter: unset;
+        opacity: 1;
+    }
+}
+
+.article:not([hidden]) .cta-btn {
+    animation: btnAnim 600ms cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+    animation-delay: 800ms;
+}
+
+.thumbnail__title {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: 500;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.thumbnail__btn:hover .thumbnail__title {
+    display: block;
+}
+
+.article:not([hidden]) .image {
+    animation: imageAnim 600ms cubic-bezier(0.39, 0.575, 0.565, 1) forwards;
+}
+
+@keyframes imageAnim {
+    0% {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes btnAnim {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

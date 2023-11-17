@@ -1,17 +1,12 @@
-import React, { useState } from 'react';
+// footer.js
+import React from 'react';
 import '../../styles/footer.scss';
 
-const Footer = ({ projects = [] }) => { 
-  const [selectedProjectId, setSelectedProjectId] = useState(3);
-
+const Footer = ({ projects = [], selectedProjectId, onSelected }) => { 
   const handleClick = (id) => {
-    setSelectedProjectId(id);
+    onSelected(id); 
   };
 
-
-  if (!projects.length) {
-    return <div>No projects to display</div>;
-  }
 
   return (
     <aside className="aside absolute shadow-inset">
@@ -25,7 +20,8 @@ const Footer = ({ projects = [] }) => {
             aria-selected={selectedProjectId === project.id ? 'true' : 'false'}
             tabIndex={index === 0 ? 0 : -1}
             aria-controls={`tabpanel-${project.id}`}
-            style={{ backgroundImage: `url(${project.image})` }}            onClick={() => handleClick(project.id)}
+            style={{ backgroundImage: `url(${project.image})` }}
+            onClick={() => handleClick(project.id)}
           >
             <span className="sr-only">{project.title}</span>
             <span className="thumbnail__title text-sm md:text-md">{project.title}</span>
