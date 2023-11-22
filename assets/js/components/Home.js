@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from './Header'; 
+import Footer from './Footer';
 import '../../styles/home.scss';
+import ProjectArticle from './ProjectArticle';
 
 const Home = () => {
     const [projects, setProjects] = useState([]);

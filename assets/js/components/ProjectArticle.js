@@ -1,14 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../../styles/home.scss'; 
 
-const ProjectArticle = ({ project, isSelected, onSelected }) => {
-  const handleSelected = () => {
-    onSelected(project.id);
-  };
+const ProjectArticle = ({ project, isSelected }) => {
 
   const media = project.video ? (
     <video className="image rounded max-w-[45%] h-auto shadow-sm" autoPlay muted>
-    <source src={project.video} type="video/mp4" />    </video>
+      <source src={project.video} type="video/mp4" />
+    </video>
   ) : (
     <img className="image rounded max-w-full h-auto shadow-sm" src={`/build/images/${project.image}`} alt={`Picture of ${project.title}`} />
   );
@@ -21,12 +20,12 @@ const ProjectArticle = ({ project, isSelected, onSelected }) => {
           <p className="description font-contentfont font-semibold text-gray-700 text-sm md:text-lg mt-3">
             {project.description}
           </p>
-          <button className="learn-more cta-btn mt-3 md:mt-6" onClick={handleSelected}>
+          <Link to={`/presentation/${project.id}`} className="learn-more cta-btn mt-3 md:mt-6">
             <span className="circle" aria-hidden="true">
               <span className="icon arrow"></span>
             </span>
             <span className="button-text text-sm md:text-md">Learn more</span>
-          </button>
+          </Link>
         </figcaption>
         <figure className="flex justify-center mt-2 md:mt-0 lg:ml-5 lg:pl-5">
           {media}
