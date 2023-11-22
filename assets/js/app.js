@@ -1,46 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import ProjectArticle from './components/ProjectArticle';
-import '../styles/app.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Home from './components/Home'; // Supposons que c'est votre page d'accueil
+import PresentationProject from './components/PresentationProject';
+// import ErrorPage from './components/ErrorPage'; // Une page pour gérer les routes non trouvées
 
-const ParentComponent = () => {
-  const [projects, setProjects] = useState([]);
-  const [selectedProjectId, setSelectedProjectId] = useState(3);
-
-  useEffect(() => {
-      fetch('http://localhost:8000/api/projects')
-          .then(response => response.json())
-          .then(data => setProjects(data))
-          .catch(error => console.error('Error fetching projects', error));
-  }, []);
-
-  const handleSelectedProject = (id) => {
-    setSelectedProjectId(id);
-  };
-
+const App = () => {
   return (
-    <>
-      <Header />
-      <div className="responsive mt-4 relative mx-auto flex flex-col items-center justify-between h-screen md:h-[90vh] p-4 md:p-16 font-titlefont">        {projects.map((project) => (
-          <ProjectArticle
-            key={project.id}
-            project={project}
-            isSelected={selectedProjectId === project.id}
-            onSelected={handleSelectedProject}
-          />
-        ))}
-      </div>
-      <Footer projects={projects} selectedProjectId={selectedProjectId} onSelected={handleSelectedProject} />
-    </>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/presentation/:id" component={PresentationProject} />
+        <Route component={ErrorPage} />
+      </Switch>
+    </Router>
   );
 };
 
-const container = document.getElementById('root');
-const root = createRoot(container);
-root.render(
-  <React.StrictMode>
-    <ParentComponent />
-  </React.StrictMode>
-);
+export default App;
