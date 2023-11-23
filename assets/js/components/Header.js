@@ -4,7 +4,7 @@ const Header = () => (
   <header>
     <nav className="w-full h-16 font-titlefont z-50 relative mobile-border">
   <div className="flex items-center justify-between p-4">
-    <a href="{{ path('app_home') }}" className="flex items-center mr-6">
+    <a href="/" className="flex items-center mr-6">
       <span className="self-start text-2xl pl-4 font-semibold whitespace-nowrap text-black">AP</span>
     </a>
     <div className="md:mr-9 mt-4">
